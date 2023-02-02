@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://scripts/save_data.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+death_count = 0
+creator_death_count = 1
+best_death_count = -1
