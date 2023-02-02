@@ -6,4 +6,4 @@ AD to move
 W to jump
 Click with the mouse to place a block
 
-###### Made in Godot in 5 hours by Thomas Pope
+###### Made in 5 hours by Thomas Pope using Godot
