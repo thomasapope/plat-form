@@ -1,4 +1,4 @@
-# plat-form
+# Plat Form
 A difficult one level platforming game where you can place a limited number of blocks. Get to the end in as few deaths as possible.
 
 ### Controls:
