@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://art/mono_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scripts/World.gd" type="Script" id=5]
 [ext_resource path="res://scripts/Helper/Follow.gd" type="Script" id=6]
 [ext_resource path="res://scenes/Goal.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ui/UITheme.tres" type="Theme" id=8]
 [ext_resource path="res://scripts/Helper/TileMapReplacer.gd" type="Script" id=9]
 [ext_resource path="res://sound/win.wav" type="AudioStream" id=10]
 
@@ -21,7 +22,7 @@ tile_data = PoolIntArray( -2228009, 0, 0, -2162473, 0, 0, -2096937, 0, 0, -20314
 script = ExtResource( 9 )
 
 [node name="Character" parent="." instance=ExtResource( 2 )]
-position = Vector2( -288, -48 )
+position = Vector2( -301, -39 )
 
 [node name="Hazard" parent="." instance=ExtResource( 3 )]
 
@@ -40,6 +41,7 @@ margin_top = -75.0
 margin_right = 128.0
 margin_bottom = 75.0
 mouse_filter = 2
+theme = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -55,6 +57,7 @@ margin_top = -40.0
 margin_right = 64.0
 margin_bottom = -26.0
 grow_horizontal = 2
+theme = ExtResource( 8 )
 text = "looks like you died"
 align = 1
 __meta__ = {
@@ -135,6 +138,9 @@ margin_right = -5.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 60, 0 )
 text = "Deaths: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Goal" parent="." instance=ExtResource( 7 )]
 position = Vector2( 5240, -392 )
@@ -144,6 +150,9 @@ position = Vector2( 1200, -136 )
 
 [node name="KillBoundary2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 4072, -416 )
+
+[node name="KillBoundary" parent="KillBoundary2" instance=ExtResource( 4 )]
+position = Vector2( -5423, 309 )
 
 [node name="Hazard2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 104, -8 )
@@ -162,13 +171,16 @@ __meta__ = {
 }
 
 [node name="Tutorial" type="Label" parent="Tutorials"]
-margin_left = -343.0
-margin_top = 65.0
-margin_right = -267.0
-margin_bottom = 113.0
-text = "AD to move
-W to jump
+margin_left = -334.0
+margin_top = 52.0
+margin_right = -247.0
+margin_bottom = 105.0
+theme = ExtResource( 8 )
+text = "AD to move.
+W to jump.
+
 good luck."
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -178,6 +190,7 @@ margin_left = -51.0
 margin_top = 66.0
 margin_right = 108.0
 margin_bottom = 97.0
+theme = ExtResource( 8 )
 text = "right click to place block.
 use wisely."
 align = 1
@@ -190,6 +203,7 @@ margin_left = 4356.0
 margin_top = -256.0
 margin_right = 4571.0
 margin_bottom = -242.0
+theme = ExtResource( 8 )
 text = "hope you saved a couple blocks..."
 __meta__ = {
 "_edit_use_anchors_": false

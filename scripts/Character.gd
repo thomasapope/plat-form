@@ -49,6 +49,9 @@ func _physics_process(_delta):
 	
 	var direction = get_direction()
 	
+	if (Input.is_action_just_pressed("reset")):
+		reset()
+	
 	# Play jump sound
 	if (direction.y == -1):
 		sound_jump.play()
@@ -121,18 +124,26 @@ func get_new_animation():
 	return animation_new
 
 
+func reset():
+	kill()
+
+
 func kill(code = 0):
 	if (dead): return # you only die once
 	if (!celebrate):
 		emit_signal("player_died", code)
 	has_control = false
 	dead = true
-	if (code == 1):
-		sound_fall.play()
-	else:
-		sound_die.play()
-		
-#	queue_free()
+	
+	match code:
+		0:
+			sound_die.play()
+		1:
+			sound_fall.play()
+		2:
+			#ADD RESET SOUND HERE
+			sound_die.play()
+#			sound_reset.play() What a failure
 
 
 func goal_reached():

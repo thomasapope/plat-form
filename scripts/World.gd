@@ -15,7 +15,7 @@ var end_creator_format = "creator's best: %d"
 var game_data
 var death_count = 0
 
-export var save_filename = "res://save.tres"
+export var save_filename = "user://save1.tres"
 
 
 func _ready():
@@ -31,6 +31,10 @@ func _ready():
 #	print (game_data.best_death_count)
 	
 	$Camera2D/GUI/DeathCountLabel.text = death_count_format_str % game_data.death_count
+	
+	
+#	print ("Checking deaths")
+#	print(game_data.death_count)
 
 
 func save_data(filename, data):
@@ -62,6 +66,9 @@ func player_died(code):
 	var error_code = ResourceSaver.save(save_filename, game_data)
 	if (error_code != 0):
 		print_debug("ERROR:", error_code)
+	print (error_code)
+	print ("Checking deaths")
+	print(game_data.death_count)
 
 
 func goal_reached():
@@ -85,6 +92,7 @@ func goal_reached():
 	if (game_data.best_death_count > game_data.death_count || game_data.best_death_count == -1):
 		game_data.best_death_count = game_data.death_count
 		print("NEW HIGH SCORE! ", game_data.best_death_count)
+		get_node("Camera2D/GUI/VictoryLabel/Deaths/Best").text = end_best_format % game_data.best_death_count
 	
 	var error_code = ResourceSaver.save(save_filename, game_data)
 	if (error_code != 0):
@@ -102,16 +110,24 @@ func reset():
 			print_debug("ERROR:", error_code)
 
 
+# Place Blocks
 func _unhandled_input(event):
 	if (blocks < 1): return
+	if ($Character.dead == true): return
 	# Mouse in viewport coordinates.
 	if event is InputEventMouseButton:
 		if event.is_pressed():
 			var click_pos = $TileMap.world_to_map(get_global_mouse_position())
 #			print("Tilemap Cell: ", click_pos)
 			if ($TileMap.get_cellv(click_pos) == -1):
-				$TileMap.set_cellv(click_pos, 0)
-				blocks -= 1
-				$"Camera2D/GUI/Block Label".text = block_format_str % blocks
+				# Make sure the player is not in that cell
+				var player_pos = $TileMap.world_to_map($TileMap.to_local($Character.position))
+				if player_pos != click_pos:
+					$TileMap.set_cellv(click_pos, 0)
+					blocks -= 1
+					$"Camera2D/GUI/Block Label".text = block_format_str % blocks
+				else:
+					print("The player is there.")
 			else:
+				# Already a block there
 				print("There is already a tile there.")

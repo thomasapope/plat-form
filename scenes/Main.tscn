@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/Swansea72.tres" type="DynamicFont" id=1]
+[ext_resource path="res://ui/UITheme.tres" type="Theme" id=2]
+
+[node name="Main" type="Control"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 215.0
+margin_top = 74.0
+margin_right = 775.0
+margin_bottom = 233.0
+custom_fonts/font = ExtResource( 1 )
+text = "Plat  Form"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Label"]
+margin_left = 136.0
+margin_top = 116.0
+margin_right = 436.0
+margin_bottom = 455.0
+theme = ExtResource( 2 )
+custom_constants/separation = 25
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Play" type="Button" parent="Label/VBoxContainer"]
+margin_right = 300.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 0, 75 )
+text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit" type="Button" parent="Label/VBoxContainer"]
+margin_top = 100.0
+margin_right = 300.0
+margin_bottom = 175.0
+rect_min_size = Vector2( 0, 75 )
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
