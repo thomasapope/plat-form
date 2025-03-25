@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://ui/Swansea72.tres" type="DynamicFont" id=1]
 [ext_resource path="res://ui/UITheme.tres" type="Theme" id=2]
+[ext_resource path="res://scripts/MenuButton.gd" type="Script" id=3]
 
 [node name="Main" type="Control"]
 __meta__ = {
@@ -36,9 +37,11 @@ margin_right = 300.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 0, 75 )
 text = "Play"
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+scene = "res://scenes/Setup Game.tscn"
 
 [node name="Exit" type="Button" parent="Label/VBoxContainer"]
 margin_top = 100.0
@@ -46,6 +49,9 @@ margin_right = 300.0
 margin_bottom = 175.0
 rect_min_size = Vector2( 0, 75 )
 text = "Exit"
+expand_icon = true
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+action = "exit"
