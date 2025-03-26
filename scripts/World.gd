@@ -23,9 +23,17 @@ export var save_filename = "user://save1.tres"
 func _ready():
 	$"Camera2D/GUI/Block Label".text = block_format_str % blocks
 	
+	# Setup reset timer
 	var error_code = $ResetTimer.connect("timeout", self, "reset")
 	if (error_code != 0):
 		print_debug("ERROR:", error_code)
+	
+	# Setup time tracker
+	error_code = timer.connect("timeout", self, "_on_timer_timeout")
+	if (error_code != 0):
+		print_debug("ERROR:", error_code)
+	timer.time_label = $Camera2D/GUI/TimeLabel
+	timer.start()
 		
 	game_data = load_save_data(save_filename)
 #	print (game_data.death_count)
@@ -110,6 +118,10 @@ func reset():
 		var error_code = get_tree().change_scene("res://scenes/Setup Game.tscn")
 		if (error_code != 0):
 			print_debug("ERROR:", error_code)
+
+
+func _on_timer_timeout():
+	pass
 
 
 # Place Blocks
