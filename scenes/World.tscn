@@ -208,3 +208,5 @@ text = "hope you saved a couple blocks..."
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TimeTracker" type="Timer" parent="."]

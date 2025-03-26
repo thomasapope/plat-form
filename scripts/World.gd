@@ -1,11 +1,13 @@
 extends Node2D
 
 var reset_time = 2
+var end_reset_time = 70
 var blocks = 6
 
 var is_goal_reached = false
 
 onready var sound_win = $Win
+onready var timer = $TimeTracker
 
 var block_format_str = "Blocks: %d"
 var death_count_format_str = "Deaths: %d"
@@ -86,7 +88,7 @@ func goal_reached():
 	get_node("Camera2D/GUI/VictoryLabel/Deaths/Best").text = end_best_format % game_data.best_death_count
 	get_node("Camera2D/GUI/VictoryLabel/Deaths/Best/CreatorBest").text = end_creator_format % game_data.creator_death_count
 	
-	$ResetTimer.wait_time = reset_time * 5
+	$ResetTimer.wait_time = end_reset_time
 	$ResetTimer.start()
 	
 	if (game_data.best_death_count > game_data.death_count || game_data.best_death_count == -1):
