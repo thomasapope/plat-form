@@ -1,12 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ui/Swansea72.tres" type="DynamicFont" id=1]
 [ext_resource path="res://ui/UITheme.tres" type="Theme" id=2]
 [ext_resource path="res://scripts/MenuButton.gd" type="Script" id=3]
 [ext_resource path="res://scripts/Scores.gd" type="Script" id=4]
-[ext_resource path="res://scenes/LeaderboardLabel.tscn" type="PackedScene" id=5]
 
-[node name="Main" type="Control"]
+[node name="Leaderboard" type="Control"]
 theme = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -27,26 +26,23 @@ __meta__ = {
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 margin_left = 339.0
-margin_top = 179.0
+margin_top = 149.0
 margin_right = 639.0
-margin_bottom = 428.0
+margin_bottom = 487.0
+scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Scores" type="VBoxContainer" parent="ScrollContainer"]
-margin_right = 300.0
-margin_bottom = 30.0
 grow_horizontal = 2
 theme = ExtResource( 2 )
-custom_constants/separation = 25
+custom_constants/separation = 10
 alignment = 1
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Label" parent="ScrollContainer/Scores" instance=ExtResource( 5 )]
 
 [node name="Back" type="Button" parent="."]
 margin_left = 43.0

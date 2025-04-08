@@ -44,10 +44,22 @@ __meta__ = {
 }
 scene = "res://scenes/Setup Game.tscn"
 
-[node name="Exit" type="Button" parent="VBoxContainer"]
+[node name="Leaderboard" type="Button" parent="VBoxContainer"]
 margin_top = 100.0
 margin_right = 300.0
 margin_bottom = 175.0
+rect_min_size = Vector2( 0, 75 )
+text = "Victors"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+scene = "res://scenes/Leaderboard.tscn"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+margin_top = 200.0
+margin_right = 300.0
+margin_bottom = 275.0
 rect_min_size = Vector2( 0, 75 )
 text = "Exit"
 expand_icon = true

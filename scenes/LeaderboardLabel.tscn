@@ -8,6 +8,7 @@ margin_bottom = 30.0
 rect_min_size = Vector2( 300, 30 )
 custom_fonts/font = ExtResource( 1 )
 text = "Score Label"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
