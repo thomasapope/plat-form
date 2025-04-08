@@ -18,7 +18,7 @@ margin_right = 775.0
 margin_bottom = 148.0
 theme = ExtResource( 2 )
 custom_fonts/font = ExtResource( 1 )
-text = "The Victor's Club"
+text = "Victor's Club"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false

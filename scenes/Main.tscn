@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/Swansea72.tres" type="DynamicFont" id=1]
 [ext_resource path="res://ui/UITheme.tres" type="Theme" id=2]
 [ext_resource path="res://scripts/MenuButton.gd" type="Script" id=3]
+[ext_resource path="res://art/character/tile_0281.png" type="Texture" id=4]
+[ext_resource path="res://art/mono_tileset.tres" type="TileSet" id=5]
 
 [node name="Main" type="Control"]
 __meta__ = {
@@ -11,9 +13,9 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="."]
 margin_left = 215.0
-margin_top = 74.0
+margin_top = 65.0
 margin_right = 775.0
-margin_bottom = 233.0
+margin_bottom = 224.0
 theme = ExtResource( 2 )
 custom_fonts/font = ExtResource( 1 )
 text = "Plat Form"
@@ -24,9 +26,9 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 351.0
-margin_top = 190.0
+margin_top = 160.0
 margin_right = 651.0
-margin_bottom = 529.0
+margin_bottom = 499.0
 theme = ExtResource( 2 )
 custom_constants/separation = 25
 __meta__ = {
@@ -68,3 +70,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 action = "exit"
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 3, 3 )
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 262145, 0, 0, 262147, 0, 0, 327681, 0, 0, 327683, 0, 0, 393217, 0, 0, 393219, 0, 0, 458752, 1, 0, 458753, 0, 0, 458755, 0, 0, 524288, 0, 0, 524289, 0, 0, 524291, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 589825, 0, 0, 589827, 0, 0, 589839, 0, 0, 589841, 0, 0, 655361, 0, 0, 655363, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655375, 0, 0, 655377, 0, 0, 720897, 0, 0, 720899, 0, 0, 720901, 0, 0, 720903, 0, 0, 720911, 0, 0, 720913, 0, 0, 786437, 0, 0, 786439, 0, 0, 786447, 0, 0, 786449, 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="TileMap"]
+position = Vector2( 264, 120 )
+texture = ExtResource( 4 )
