@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Plat Form"
-run/main_scene="res://scenes/Setup Game.tscn"
+run/main_scene="res://scenes/Main.tscn"
 config/icon="res://art/character/tile_0284.png"
 config/windows_native_icon="res://icon.ico"
 

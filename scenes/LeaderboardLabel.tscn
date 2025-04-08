@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui/Swansea24.tres" type="DynamicFont" id=1]
+
+[node name="Label" type="Label"]
+margin_right = 300.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 300, 30 )
+custom_fonts/font = ExtResource( 1 )
+text = "Score Label"
+__meta__ = {
+"_edit_use_anchors_": false
+}

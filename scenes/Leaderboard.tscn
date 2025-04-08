@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/Swansea72.tres" type="DynamicFont" id=1]
 [ext_resource path="res://ui/UITheme.tres" type="Theme" id=2]
 [ext_resource path="res://scripts/MenuButton.gd" type="Script" id=3]
-[ext_resource path="res://ui/Swansea24.tres" type="DynamicFont" id=4]
+[ext_resource path="res://scenes/Scores.gd" type="Script" id=4]
+[ext_resource path="res://scenes/LeaderboardLabel.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Control"]
 theme = ExtResource( 2 )
@@ -40,16 +41,12 @@ grow_horizontal = 2
 theme = ExtResource( 2 )
 custom_constants/separation = 25
 alignment = 1
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScoreLabel" type="Label" parent="ScrollContainer/Scores"]
-margin_right = 300.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 300, 30 )
-custom_fonts/font = ExtResource( 4 )
-text = "Charles C."
+[node name="Label" parent="ScrollContainer/Scores" instance=ExtResource( 5 )]
 
 [node name="Back" type="Button" parent="."]
 margin_left = 43.0
