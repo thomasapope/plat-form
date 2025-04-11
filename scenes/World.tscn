@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/TileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=2]
@@ -8,8 +8,10 @@
 [ext_resource path="res://scripts/Helper/Follow.gd" type="Script" id=6]
 [ext_resource path="res://scenes/Goal.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/UITheme.tres" type="Theme" id=8]
+[ext_resource path="res://art/character/tile_0286.png" type="Texture" id=9]
 [ext_resource path="res://sound/win.wav" type="AudioStream" id=10]
 [ext_resource path="res://scripts/TimeTracker.gd" type="Script" id=11]
+[ext_resource path="res://art/tile_0011.png" type="Texture" id=12]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 5 )
@@ -113,36 +115,97 @@ margin_right = 52.0
 text = "creator's best: #"
 align = 1
 
-[node name="Block Label" type="Label" parent="Camera2D/GUI"]
-anchor_right = 0.09375
+[node name="GUI" type="HBoxContainer" parent="Camera2D/GUI"]
 margin_left = 5.0
-margin_top = 5.0
-margin_right = 40.0
-margin_bottom = 40.0
-text = "Blocks:"
+margin_right = 251.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DeathCountLabel" type="Label" parent="Camera2D/GUI"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -80.0
-margin_top = 5.0
-margin_right = -5.0
+[node name="Blocks" type="HBoxContainer" parent="Camera2D/GUI/GUI"]
+margin_right = 79.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 0, 16 )
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_constants/separation = 3
+
+[node name="BlockIcon" type="TextureRect" parent="Camera2D/GUI/GUI/Blocks"]
+anchor_top = 0.1
+anchor_bottom = 0.1
+margin_right = 16.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 16, 16 )
+texture = ExtResource( 12 )
+expand = true
+
+[node name="Block Label" type="Label" parent="Camera2D/GUI/GUI/Blocks"]
+margin_left = 19.0
+margin_top = 1.0
+margin_right = 46.0
+margin_bottom = 14.0
+text = ": 6"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="HBoxContainer" parent="Camera2D/GUI/GUI"]
+margin_left = 83.0
+margin_right = 162.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 0, 16 )
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="TimeIcon" type="TextureRect" parent="Camera2D/GUI/GUI/Time"]
+anchor_top = 0.1
+anchor_bottom = 0.1
+margin_right = 16.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 16, 16 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 12 )
+stretch_mode = 1
+
+[node name="TimeLabel" type="Label" parent="Camera2D/GUI/GUI/Time"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 47.0
+margin_bottom = 14.0
+text = ": 0"
+
+[node name="Deaths" type="HBoxContainer" parent="Camera2D/GUI/GUI"]
+margin_left = 166.0
+margin_right = 246.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 0, 16 )
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="DeathIcon" type="TextureRect" parent="Camera2D/GUI/GUI/Deaths"]
+anchor_top = 0.1
+anchor_bottom = 0.1
+margin_right = 16.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 16, 16 )
+size_flags_vertical = 6
+texture = ExtResource( 9 )
+stretch_mode = 1
+
+[node name="DeathCountLabel" type="Label" parent="Camera2D/GUI/GUI/Deaths"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 80.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 60, 0 )
-text = "Deaths: 0"
+text = ": 0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="TimeLabel" type="Label" parent="Camera2D/GUI"]
-margin_left = 9.0
-margin_top = 23.0
-margin_right = 49.0
-margin_bottom = 34.0
-text = "Elapsed time: 0"
 
 [node name="Goal" parent="." instance=ExtResource( 7 )]
 position = Vector2( 5240, -392 )

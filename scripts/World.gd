@@ -9,8 +9,8 @@ var is_goal_reached = false
 onready var sound_win = $Win
 onready var timer = $TimeTracker
 
-var block_format_str = "Blocks: %d"
-var death_count_format_str = "Deaths: %d"
+var block_format_str = ": %d"
+var death_count_format_str = ": %d"
 var end_death_format = "%d deaths"
 var end_best_format = "best: %d"
 var end_creator_format = "creator's best: %d"
@@ -21,7 +21,7 @@ export var save_filename = "user://save1.tres"
 
 
 func _ready():
-	$"Camera2D/GUI/Block Label".text = block_format_str % blocks
+	$"Camera2D/GUI/GUI/Blocks/Block Label".text = block_format_str % blocks
 	
 	# Setup reset timer
 	var error_code = $ResetTimer.connect("timeout", self, "reset")
@@ -32,7 +32,7 @@ func _ready():
 	error_code = timer.connect("timeout", self, "_on_timer_timeout")
 	if (error_code != 0):
 		print_debug("ERROR:", error_code)
-	timer.time_label = $Camera2D/GUI/TimeLabel
+	timer.time_label = $Camera2D/GUI/GUI/Time/TimeLabel
 	timer.start()
 		
 	game_data = load_save_data(save_filename)
@@ -40,7 +40,7 @@ func _ready():
 #	print (game_data.creator_death_count)
 #	print (game_data.best_death_count)
 	
-	$Camera2D/GUI/DeathCountLabel.text = death_count_format_str % game_data.death_count
+	$Camera2D/GUI/GUI/Deaths/DeathCountLabel.text = death_count_format_str % game_data.death_count
 	
 	
 #	print ("Checking deaths")
@@ -70,7 +70,7 @@ func player_died(code):
 	
 	$Tutorials.visible = false
 	$Camera2D/GUI/DeathCountLabel.visible = false
-	$"Camera2D/GUI/Block Label".visible = false
+	$"Camera2D/GUI//GUI/Blocks/Block Label".visible = false
 	
 	game_data.death_count += 1
 	var error_code = ResourceSaver.save(save_filename, game_data)
@@ -89,7 +89,7 @@ func goal_reached():
 	
 	$Tutorials.visible = false
 	$Camera2D/GUI/DeathCountLabel.visible = false
-	$"Camera2D/GUI/Block Label".visible = false
+	$"Camera2D/GUI//GUI/Blocks/Block Label".visible = false
 	
 	get_node("Camera2D/GUI/VictoryLabel").visible = true
 	get_node("Camera2D/GUI/VictoryLabel/Deaths").text = end_death_format % game_data.death_count
@@ -139,7 +139,7 @@ func _unhandled_input(event):
 				if player_pos != click_pos:
 					$TileMap.set_cellv(click_pos, 0)
 					blocks -= 1
-					$"Camera2D/GUI/Block Label".text = block_format_str % blocks
+					$"Camera2D/GUI//GUI/Blocks/Block Label".text = block_format_str % blocks
 				else:
 					print("The player is there.")
 			else:
