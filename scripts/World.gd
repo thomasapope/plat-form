@@ -69,8 +69,8 @@ func player_died(code):
 	$ResetTimer.start()
 	
 	$Tutorials.visible = false
-	$Camera2D/GUI/DeathCountLabel.visible = false
-	$"Camera2D/GUI//GUI/Blocks/Block Label".visible = false
+	$Camera2D/GUI/GUI/Deaths/DeathCountLabel.visible = false
+	$"Camera2D/GUI/GUI/Blocks/Block Label".visible = false
 	
 	game_data.death_count += 1
 	var error_code = ResourceSaver.save(save_filename, game_data)
