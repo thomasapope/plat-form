@@ -69,16 +69,14 @@ func player_died(code):
 	$ResetTimer.start()
 	
 	$Tutorials.visible = false
-	$Camera2D/GUI/GUI/Deaths/DeathCountLabel.visible = false
+	#$Camera2D/GUI/GUI/Deaths/DeathCountLabel.visible = false
 	$"Camera2D/GUI/GUI/Blocks/Block Label".visible = false
 	
 	game_data.death_count += 1
+	$Camera2D/GUI/GUI/Deaths/DeathCountLabel.text = death_count_format_str % game_data.death_count
 	var error_code = ResourceSaver.save(save_filename, game_data)
 	if (error_code != 0):
 		print_debug("ERROR:", error_code)
-	print (error_code)
-	print ("Checking deaths")
-	print(game_data.death_count)
 
 
 func goal_reached():

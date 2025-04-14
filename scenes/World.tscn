@@ -117,16 +117,19 @@ text = "creator's best: #"
 align = 1
 
 [node name="GUI" type="HBoxContainer" parent="Camera2D/GUI"]
+anchor_top = 0.01
+anchor_bottom = 0.01
 margin_left = 5.0
+margin_top = 3.0
 margin_right = 251.0
-margin_bottom = 16.0
+margin_bottom = 19.0
 size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Blocks" type="HBoxContainer" parent="Camera2D/GUI/GUI"]
-margin_right = 79.0
+margin_right = 89.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 0, 16 )
 size_flags_horizontal = 3
@@ -142,9 +145,9 @@ expand = true
 
 [node name="Block Label" type="Label" parent="Camera2D/GUI/GUI/Blocks"]
 margin_left = 19.0
-margin_top = 1.0
-margin_right = 46.0
-margin_bottom = 14.0
+margin_top = 3.0
+margin_right = 36.0
+margin_bottom = 12.0
 text = ": 6"
 valign = 1
 __meta__ = {
@@ -152,8 +155,8 @@ __meta__ = {
 }
 
 [node name="Time" type="HBoxContainer" parent="Camera2D/GUI/GUI"]
-margin_left = 83.0
-margin_right = 162.0
+margin_left = 93.0
+margin_right = 182.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 0, 16 )
 size_flags_horizontal = 3
@@ -170,22 +173,19 @@ stretch_mode = 1
 
 [node name="TimeLabel" type="Label" parent="Camera2D/GUI/GUI/Time"]
 margin_left = 20.0
-margin_top = 1.0
-margin_right = 47.0
-margin_bottom = 14.0
+margin_top = 3.0
+margin_right = 37.0
+margin_bottom = 12.0
 text = ": 0"
 
 [node name="Deaths" type="HBoxContainer" parent="Camera2D/GUI/GUI"]
-margin_left = 166.0
+margin_left = 186.0
 margin_right = 246.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 0, 16 )
-size_flags_horizontal = 3
 size_flags_vertical = 4
 
 [node name="DeathIcon" type="TextureRect" parent="Camera2D/GUI/GUI/Deaths"]
-anchor_top = 0.1
-anchor_bottom = 0.1
 margin_right = 16.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 16, 16 )
@@ -195,10 +195,10 @@ stretch_mode = 1
 
 [node name="DeathCountLabel" type="Label" parent="Camera2D/GUI/GUI/Deaths"]
 margin_left = 20.0
-margin_top = 1.0
-margin_right = 80.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 60, 0 )
+margin_top = 3.0
+margin_right = 60.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 40, 0 )
 text = ": 0"
 __meta__ = {
 "_edit_use_anchors_": false
