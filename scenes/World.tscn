@@ -63,7 +63,6 @@ __meta__ = {
 }
 
 [node name="VictoryLabel" type="Label" parent="Camera2D/GUI"]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -73,8 +72,23 @@ margin_top = -50.0
 margin_right = 64.0
 margin_bottom = -26.0
 grow_horizontal = 2
-text = "congratulations!
-you won with only"
+text = "Congratulations, Victor!
+"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="Label" parent="Camera2D/GUI/VictoryLabel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -28.0
+margin_top = -2.0
+margin_right = 33.0
+margin_bottom = 7.0
+text = "###"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -86,10 +100,14 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -28.0
-margin_top = 6.0
-margin_right = 28.0
+margin_top = 16.0
+margin_right = 33.0
+margin_bottom = 25.0
 text = "# deaths"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Best" type="Label" parent="Camera2D/GUI/VictoryLabel/Deaths"]
 anchor_left = 0.5
@@ -106,6 +124,7 @@ __meta__ = {
 }
 
 [node name="CreatorBest" type="Label" parent="Camera2D/GUI/VictoryLabel/Deaths/Best"]
+visible = false
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -214,7 +233,7 @@ position = Vector2( 1200, -136 )
 position = Vector2( 4072, -416 )
 
 [node name="KillBoundary" parent="KillBoundary2" instance=ExtResource( 4 )]
-position = Vector2( -5423, 309 )
+position = Vector2( -5698, 290 )
 
 [node name="Hazard2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 104, -8 )
@@ -224,6 +243,7 @@ stream = ExtResource( 10 )
 volume_db = -15.0
 
 [node name="Tutorials" type="Control" parent="."]
+visible = false
 margin_left = 48.0
 margin_top = -142.0
 margin_right = 88.0

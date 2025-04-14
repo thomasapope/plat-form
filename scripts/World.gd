@@ -14,6 +14,7 @@ var death_count_format_str = ": %d"
 var end_death_format = "%d deaths"
 var end_best_format = "best: %d"
 var end_creator_format = "creator's best: %d"
+var best_time_format = "%d"
 var game_data
 var death_count = 0
 
@@ -68,15 +69,25 @@ func player_died(code):
 	$ResetTimer.wait_time = reset_time
 	$ResetTimer.start()
 	
+	# Hide GUI
 	$Tutorials.visible = false
-	#$Camera2D/GUI/GUI/Deaths/DeathCountLabel.visible = false
-	$"Camera2D/GUI/GUI/Blocks/Block Label".visible = false
+	$GUI.visible = false
 	
+	# Update deaths
 	game_data.death_count += 1
-	$Camera2D/GUI/GUI/Deaths/DeathCountLabel.text = death_count_format_str % game_data.death_count
+	
+	# Save game_data
 	var error_code = ResourceSaver.save(save_filename, game_data)
 	if (error_code != 0):
 		print_debug("ERROR:", error_code)
+
+
+func check_best_time(time = 0):
+	if time > game_data.best_time:
+		game_data.best_time = time
+		return true # Best time achieved
+	else:
+		return false # Not best time
 
 
 func goal_reached():
@@ -85,22 +96,30 @@ func goal_reached():
 	is_goal_reached = true
 	sound_win.play()
 	
+	# Hide GUI
 	$Tutorials.visible = false
 	$Camera2D/GUI/DeathCountLabel.visible = false
-	$"Camera2D/GUI//GUI/Blocks/Block Label".visible = false
+	$Camera2D/GUI/GUI.visible = false
 	
 	get_node("Camera2D/GUI/VictoryLabel").visible = true
 	get_node("Camera2D/GUI/VictoryLabel/Deaths").text = end_death_format % game_data.death_count
 	get_node("Camera2D/GUI/VictoryLabel/Deaths/Best").text = end_best_format % game_data.best_death_count
-	get_node("Camera2D/GUI/VictoryLabel/Deaths/Best/CreatorBest").text = end_creator_format % game_data.creator_death_count
+	get_node("Camera2D/GUI/VictoryLabel/Time").text = best_time_format % game_data
+	#get_node("Camera2D/GUI/VictoryLabel/Deaths/Best/CreatorBest").text = end_creator_format % game_data.creator_death_count
 	
 	$ResetTimer.wait_time = end_reset_time
 	$ResetTimer.start()
 	
+	# Check for fewest deaths
 	if (game_data.best_death_count > game_data.death_count || game_data.best_death_count == -1):
 		game_data.best_death_count = game_data.death_count
 		print("NEW HIGH SCORE! ", game_data.best_death_count)
 		get_node("Camera2D/GUI/VictoryLabel/Deaths/Best").text = end_best_format % game_data.best_death_count
+	
+	# Check for best time
+	if (check_best_time()):
+		print("NEW BEST TIME! ", game_data.best_time)
+#		$Camera2D/GUI/
 	
 	var error_code = ResourceSaver.save(save_filename, game_data)
 	if (error_code != 0):
