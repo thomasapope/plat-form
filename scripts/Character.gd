@@ -50,8 +50,9 @@ func _physics_process(_delta):
 	
 	var direction = get_direction()
 	
-	if (Input.is_action_just_pressed("reset")):
-		reset()
+	# Reset Character
+#	if (Input.is_action_just_pressed("reset")):
+#		reset()
 	
 	# Play jump sound
 	if (direction.y == -1):
