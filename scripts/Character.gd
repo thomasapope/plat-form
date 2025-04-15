@@ -9,6 +9,7 @@ onready var sprite = $Sprite
 onready var sound_jump = $Jump
 onready var sound_die = $Die
 onready var sound_fall = $Fall
+onready var sound_reset = $Reset
 
 var has_control = true
 var dead = false
@@ -125,7 +126,7 @@ func get_new_animation():
 
 
 func reset():
-	kill()
+	kill(2)
 
 
 func kill(code = 0):
@@ -137,13 +138,14 @@ func kill(code = 0):
 	
 	match code:
 		0:
+			# Die
 			sound_die.play()
 		1:
+			# Fall
 			sound_fall.play()
 		2:
-			#ADD RESET SOUND HERE
-			sound_die.play()
-#			sound_reset.play() What a failure
+			#Reset
+			sound_reset.play() # What a failure
 
 
 func goal_reached():

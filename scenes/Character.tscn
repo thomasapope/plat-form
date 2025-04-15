@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://art/character/tile_0281.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Character.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://sound/jump.ogg" type="AudioStream" id=7]
 [ext_resource path="res://sound/die.ogg" type="AudioStream" id=8]
 [ext_resource path="res://sound/fall.wav" type="AudioStream" id=9]
+[ext_resource path="res://sound/reset.ogg" type="AudioStream" id=10]
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 6, 6 )
@@ -194,3 +195,6 @@ volume_db = -7.0
 [node name="Fall" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 9 )
 volume_db = -7.0
+
+[node name="Reset" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 10 )
