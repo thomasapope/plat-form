@@ -10,13 +10,16 @@ onready var sound_win = $Win
 onready var timer = $TimeTracker
 
 var block_format_str = ": %d"
+var format_string = ": %d"
 var death_count_format_str = ": %d"
 var end_death_format = "%d deaths"
 var end_best_format = "best: %d"
 var end_creator_format = "creator's best: %d"
+var time_format = "time: %-3.3f"
 var best_time_format = "%d"
 var game_data
 var death_count = 0
+var elapsed_time = 0
 
 export var save_filename = "user://save1.tres"
 
@@ -66,12 +69,13 @@ func player_died(code):
 	get_node("Camera2D/GUI/DeathLabel").visible = true
 	if (code == 1):
 		get_node("Camera2D/GUI/DeathLabel").text = "and then you fell forever..."
+	$ResetTimer.stop()
 	$ResetTimer.wait_time = reset_time
 	$ResetTimer.start()
 	
 	# Hide GUI
 	$Tutorials.visible = false
-	$GUI.visible = false
+	$Camera2D/GUI.visible = false
 	
 	# Update deaths
 	game_data.death_count += 1
@@ -83,10 +87,14 @@ func player_died(code):
 
 
 func check_best_time(time = 0):
-	if time > game_data.best_time:
-		game_data.best_time = time
+	if game_data.best_time < 1:
+		print("First new time")
+		return true
+	if time < game_data.best_time:
+		print("Best time")
 		return true # Best time achieved
 	else:
+		print("Not best time")
 		return false # Not best time
 
 
@@ -96,15 +104,21 @@ func goal_reached():
 	is_goal_reached = true
 	sound_win.play()
 	
+	timer.paused = true
+	elapsed_time = elapsed_time + timer.time_left
+	
 	# Hide GUI
 	$Tutorials.visible = false
-	$Camera2D/GUI/DeathCountLabel.visible = false
 	$Camera2D/GUI/GUI.visible = false
 	
+	# Show Victory GUI
 	get_node("Camera2D/GUI/VictoryLabel").visible = true
+	
+	# Time
+	get_node("Camera2D/GUI/VictoryLabel/Time").text = time_format % elapsed_time
+	# Deaths
 	get_node("Camera2D/GUI/VictoryLabel/Deaths").text = end_death_format % game_data.death_count
 	get_node("Camera2D/GUI/VictoryLabel/Deaths/Best").text = end_best_format % game_data.best_death_count
-	get_node("Camera2D/GUI/VictoryLabel/Time").text = best_time_format % game_data
 	#get_node("Camera2D/GUI/VictoryLabel/Deaths/Best/CreatorBest").text = end_creator_format % game_data.creator_death_count
 	
 	$ResetTimer.wait_time = end_reset_time
@@ -117,13 +131,23 @@ func goal_reached():
 		get_node("Camera2D/GUI/VictoryLabel/Deaths/Best").text = end_best_format % game_data.best_death_count
 	
 	# Check for best time
-	if (check_best_time()):
+	if (check_best_time(elapsed_time)):
+		game_data.best_time = elapsed_time
 		print("NEW BEST TIME! ", game_data.best_time)
 #		$Camera2D/GUI/
 	
 	var error_code = ResourceSaver.save(save_filename, game_data)
 	if (error_code != 0):
 		print_debug("ERROR:", error_code)
+
+
+func take_screenshot():
+	# Get the viewport's texture and image data
+	var image = get_viewport().get_texture().get_data()
+	# Flip the image vertically (necessary for correct orientation)
+	image.flip_y()
+	# Save the image to a file (e.g., 'user://screenshot.png')
+	image.save_png("user://platform_screenshot.png")
 
 
 func reset():
@@ -138,7 +162,9 @@ func reset():
 
 
 func _on_timer_timeout():
-	pass
+	# Update elapsed time and time label
+	elapsed_time += 1
+	$Camera2D/GUI/GUI/Time/TimeLabel.text = format_string % elapsed_time
 
 
 # Place Blocks
@@ -162,3 +188,13 @@ func _unhandled_input(event):
 			else:
 				# Already a block there
 				print("There is already a tile there.")
+
+
+func wait(seconds: float) -> void:
+	var timer = Timer.new()
+	add_child(timer)
+	timer.wait_time = seconds
+	timer.one_shot = true
+	timer.start()
+	yield(timer, "timeout")
+	timer.queue_free()  # Clean up the timer after use

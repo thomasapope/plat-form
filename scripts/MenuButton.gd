@@ -8,7 +8,9 @@ export var scene = ""
 # exit
 
 func _ready():
-	connect("pressed", self, "_on_pressed")
+	var error_code = connect("pressed", self, "_on_pressed")
+	if (error_code != 0):
+		print_debug("ERROR: ", error_code)
 
 
 func _on_pressed():

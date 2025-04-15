@@ -9,7 +9,9 @@ var format_string = ": %d"
 
 func _ready():
 	# Connect the timeout signal to a custom method
-	self.connect("timeout", self, "_on_timeout")
+	var error_code = self.connect("timeout", self, "_on_timeout")
+	if (error_code != 0):
+		print_debug("ERROR: ", error_code)
 	
 	# Setup timer update interval
 	self.wait_time = update_interval
@@ -19,7 +21,7 @@ func _on_timeout():
 	elapsed_time += wait_time
 	
 	# Update the label with the formatted time
-	time_label.text = format_string % elapsed_time
+#	time_label.text = format_string % elapsed_time
 
 
 func reset_timer():

@@ -130,8 +130,8 @@ func reset():
 
 func kill(code = 0):
 	if (dead): return # you only die once
-	if (!celebrate):
-		emit_signal("player_died", code)
+#	if (!celebrate):
+	emit_signal("player_died", code)
 	has_control = false
 	dead = true
 	
