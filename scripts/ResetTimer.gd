@@ -5,7 +5,7 @@ export var hold_time = 2.0  # Time to hold the key to reset (in seconds)
 var hold_timer = 0.0  # Tracks how long the key has been held
 
 # Reference to the UI ProgressBar
-onready var reset_progress_bar = $ResetProgress
+onready var reset_progress_bar = $"../ResetProgress"
 
 func _process(delta):
 	if Input.is_action_pressed("reset"):
