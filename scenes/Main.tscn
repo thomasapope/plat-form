@@ -50,7 +50,7 @@ __meta__ = {
 margin_right = 300.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 0, 75 )
-text = "Play"
+text = "PLAY"
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -62,7 +62,7 @@ margin_top = 100.0
 margin_right = 300.0
 margin_bottom = 175.0
 rect_min_size = Vector2( 0, 75 )
-text = "Victors"
+text = "VICTORS"
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -70,11 +70,12 @@ __meta__ = {
 scene = "res://scenes/Leaderboard.tscn"
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
+visible = false
 margin_top = 200.0
 margin_right = 300.0
 margin_bottom = 275.0
 rect_min_size = Vector2( 0, 75 )
-text = "Exit"
+text = "EXIT"
 expand_icon = true
 script = ExtResource( 3 )
 __meta__ = {

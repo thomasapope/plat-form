@@ -246,7 +246,6 @@ stream = ExtResource( 10 )
 volume_db = -15.0
 
 [node name="Tutorials" type="Control" parent="."]
-visible = false
 margin_left = 48.0
 margin_top = -142.0
 margin_right = 88.0

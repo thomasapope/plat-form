@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Resource
+
+var victors = [
+	\"Thomas Pope\",
+	\"Charles C.\",
+	\"Landen R.\",
+	\"Owen G.\",
+	\"Ronik S.\",
+	\"Birk C.\",
+	\"Christian H.\",
+	\"Riley B.\"
+]
+"
+
+[resource]
+script = SubResource( 1 )
