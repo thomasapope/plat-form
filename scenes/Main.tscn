@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/Swansea72.tres" type="DynamicFont" id=1]
 [ext_resource path="res://ui/UITheme.tres" type="Theme" id=2]
 [ext_resource path="res://scripts/MenuButton.gd" type="Script" id=3]
 [ext_resource path="res://art/character/tile_0281.png" type="Texture" id=4]
 [ext_resource path="res://art/mono_tileset.tres" type="TileSet" id=5]
-[ext_resource path="res://scripts/Helper/VersionLabel.gd" type="Script" id=6]
 
 [node name="Main" type="Control"]
 __meta__ = {
@@ -26,9 +25,15 @@ __meta__ = {
 }
 
 [node name="Version" type="Label" parent="Label"]
-margin_right = 40.0
-margin_bottom = 9.0
-script = ExtResource( 6 )
+margin_left = 457.0
+margin_top = 23.0
+margin_right = 569.0
+margin_bottom = 63.0
+theme = ExtResource( 2 )
+text = "v 1.0.1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 351.0
