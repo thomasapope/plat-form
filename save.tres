@@ -7,3 +7,5 @@ script = ExtResource( 1 )
 death_count = 0
 creator_death_count = 1
 best_death_count = -1
+best_time = -1
+total_time = 0

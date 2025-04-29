@@ -6,4 +6,7 @@ AD to move
 W to jump  
 Click with the mouse to place a block  
 
-###### Made in 5 hours by Thomas Pope using Godot
+[Click here to play online on Itch.io](https://cptmillenium.itch.io/plat-form)
+
+###### Version 1.0.0 made in 6 hours by Thomas Pope using Godot 3.4
+###### ​AI Disclosure: Generative AI was used in the early prototyping of several small portions of code which was later hand-edited. No art, sound, or graphics were produced using AI.
