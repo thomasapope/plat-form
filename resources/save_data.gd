@@ -1,6 +1,6 @@
 extends Resource
 
-class_name save_data
+class_name save_data 
 
 
 export var death_count = 0

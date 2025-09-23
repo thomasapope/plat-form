@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-var label = preload("res://scenes/LeaderboardLabel.tscn")
+var label = preload("res://scenes/menu/LeaderboardLabel.tscn")
 export var filepath = "res://victors.txt"
 
 # Called when the node enters the scene tree for the first time.
@@ -34,7 +34,7 @@ func _ready():
 #			if line != "":
 #				victors.append(line)
 #		file.close()
-	var victors = load("res://VictorsList.tres").victors
+	var victors = load("res://resources/VictorsList.tres").victors
 	for i in range(victors.size()):
 		var new_label = label.instance()
 		new_label.text = victors[i]
