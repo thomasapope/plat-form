@@ -275,7 +275,7 @@ margin_top = 66.0
 margin_right = 108.0
 margin_bottom = 97.0
 theme = ExtResource( 8 )
-text = "right click to place block.
+text = "click to place block.
 use wisely."
 align = 1
 __meta__ = {

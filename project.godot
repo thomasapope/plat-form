@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "save_data",
 "language": "GDScript",
-"path": "res://resources/save_data.gd"
+"path": "res://scripts/save_data.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
