@@ -16,7 +16,7 @@ func _ready():
 	if (error_code != 0):
 		print_debug("ERROR:", error_code)
 	
-	error_code = get_tree().change_scene("res://scenes/World.tscn")
+	error_code = get_tree().change_scene("res://scenes/levels/World.tscn")
 	if (error_code != 0):
 		print_debug("ERROR:", error_code)
 

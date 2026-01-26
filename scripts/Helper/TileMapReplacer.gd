@@ -2,7 +2,7 @@ extends TileMap
 
 export var placeholder_tile_id = 1
 #export(PackedScene)var node_PlaceholderReplacer
-var node_PlaceholderReplacer = preload("res://scenes/Hazard.tscn")
+var node_PlaceholderReplacer = preload("res://scenes/objects/Hazard.tscn")
 
 
 func _ready():

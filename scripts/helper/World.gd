@@ -56,7 +56,7 @@ func save_data(filename, data):
 	assert(result == OK)
 
 
-func load_save_data(file_name = "res://save_data.tres"):
+func load_save_data(file_name = "res://resources/save_data.tres"):
 	if ResourceLoader.exists(file_name):
 		var data = ResourceLoader.load(file_name)
 		if data is save_data: # Check that the data is valid
@@ -184,7 +184,13 @@ func _unhandled_input(event):
 					blocks -= 1
 					$"Camera2D/GUI//GUI/Blocks/Block Label".text = block_format_str % blocks
 				else:
-					print("The player is there.")
+					if ($TileMap.get_cellv(click_pos + Vector2.DOWN) == -1):
+						# No blocks below player, place block there.
+						$TileMap.set_cellv(click_pos + Vector2.DOWN, 0)
+						blocks -= 1
+						$"Camera2D/GUI//GUI/Blocks/Block Label".text = block_format_str % blocks
+						pass
+					print("Cannot place block.")
 			else:
 				# Already a block there
 				print("There is already a tile there.")

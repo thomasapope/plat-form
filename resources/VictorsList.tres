@@ -4,14 +4,19 @@
 script/source = "extends Resource
 
 var victors = [
-	\"Thomas Pope\",
+	\"Thomas Pope\", #58.259
 	\"Charles C.\",
 	\"Landen R.\",
 	\"Owen G.\",
 	\"Ronik S.\",
 	\"Birk C.\",
 	\"Christian H.\",
-	\"Riley B.\"
+	\"Riley B.\",
+	\"Ethan S.\", #83.337
+	\"Nico L.\", #41.500
+	\"Roman B.\", #62.468
+	\"Tony L.\", #44.267
+	\"Matthew R.\" #52.495
 ]
 "
 
