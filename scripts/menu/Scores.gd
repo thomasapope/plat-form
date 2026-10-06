@@ -3,6 +3,9 @@ extends VBoxContainer
 var label = preload("res://scenes/menu/LeaderboardLabel.tscn")
 export var filepath = "res://victors.txt"
 
+
+var score_format = "%s %7.3fs"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Load list of victors from a text file
@@ -37,5 +40,6 @@ func _ready():
 	var victors = load("res://resources/VictorsList.tres").victors
 	for i in range(victors.size()):
 		var new_label = label.instance()
-		new_label.text = victors[i]
+#		new_label.text = victors[i]
+		new_label.text = score_format % [victors[i][0], victors[i][1]]
 		add_child(new_label)
