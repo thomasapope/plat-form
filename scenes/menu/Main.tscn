@@ -30,7 +30,7 @@ margin_top = 23.0
 margin_right = 569.0
 margin_bottom = 63.0
 theme = ExtResource( 5 )
-text = "v 1.0.1"
+text = "v 1.0.2.1"
 __meta__ = {
 "_edit_use_anchors_": false
 }

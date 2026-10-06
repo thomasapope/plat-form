@@ -3,21 +3,40 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends Resource
 
+#var victors = [
+#	\"Thomas Pope\", #58.259
+#	\"Charles C.\",
+#	\"Landen R.\",
+#	\"Owen G.\",
+#	\"Ronik S.\",
+#	\"Birk C.\",
+#	\"Christian H.\",
+#	\"Riley B.\",
+#	\"Ethan S.\", #83.337
+#	\"Nico L.\", #41.500
+#	\"Roman B.\", #62.468
+#	\"Tony L.\", #44.267
+#	\"Matthew R.\" #52.495
+#]
+
+
 var victors = [
-	\"Thomas Pope\", #58.259
-	\"Charles C.\",
-	\"Landen R.\",
-	\"Owen G.\",
-	\"Ronik S.\",
-	\"Birk C.\",
-	\"Christian H.\",
-	\"Riley B.\",
-	\"Ethan S.\", #83.337
-	\"Nico L.\", #41.500
-	\"Roman B.\", #62.468
-	\"Tony L.\", #44.267
-	\"Matthew R.\" #52.495
-]
+	[\"Nico L.\", 41.500],
+	[\"Jayden P.\", 43.143],
+	[\"Tony L.\", 44.267],
+	[\"Nathan R.\", 52.495],
+	[\"Thomas Pope\", 58.259],
+	[\"Daniel O.\", 62.318],
+	[\"Roman B.\", 62.468],
+	[\"Kolbie H.\", 78.860],
+	[\"Ethan S.\", 83.337],
+	[\"Charles C.\", 100],
+	[\"Landen R.\", 100],
+	[\"Owen G.\", 100],
+	[\"Ronik S.\", 100],
+	[\"Birk C.\", 100],
+	[\"Christian H.\", 100],
+	[\"Riley B.\", 100]]
 "
 
 [resource]
