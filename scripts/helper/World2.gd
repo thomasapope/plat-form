@@ -40,6 +40,7 @@ func _ready():
 	timer.start()
 		
 	game_data = load_save_data(save_filename)
+	game_data.death_count = 0
 #	print (game_data.death_count)
 #	print (game_data.creator_death_count)
 #	print (game_data.best_death_count)
@@ -80,7 +81,7 @@ func player_died(code):
 	# Update deaths
 	game_data.death_count += 1
 	
-	# Save game_data
+	 #Save game_data
 	var error_code = ResourceSaver.save(game_data, save_filename)
 	if (error_code != 0):
 		print_debug("ERROR:", error_code)
