@@ -1,12 +1,12 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://resources/ui/Swansea24.tres" type="DynamicFont" id=1]
+[ext_resource path="res://resources/ui/Swansea24.tres" type="FontFile" id=1]
 
 [node name="Label" type="Label"]
-margin_right = 300.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 300, 30 )
-custom_fonts/font = ExtResource( 1 )
+offset_right = 300.0
+offset_bottom = 30.0
+custom_minimum_size = Vector2( 300, 30 )
+theme_override_fonts/font = ExtResource( 1 )
 text = "Score Label"
 align = 1
 __meta__ = {

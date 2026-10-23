@@ -6,8 +6,8 @@ var blocks = 6
 
 var is_goal_reached = false
 
-onready var sound_win = $Win
-onready var timer = $TimeTracker
+@onready var sound_win = $Win
+@onready var timer = $TimeTracker
 
 var block_format_str = ": %d"
 var format_string = ": %d"
@@ -21,19 +21,19 @@ var game_data
 var death_count = 0
 var elapsed_time = 0
 
-export var save_filename = "user://save1.tres"
+@export var save_filename = "user://save1.tres"
 
 
 func _ready():
 	$"Camera2D/GUI/GUI/Blocks/Block Label".text = block_format_str % blocks
 	
 	# Setup reset timer
-	var error_code = $ResetTimer.connect("timeout", self, "reset")
+	var error_code = $ResetTimer.connect("timeout", Callable(self, "reset"))
 	if (error_code != 0):
 		print_debug("ERROR:", error_code)
 	
 	# Setup time tracker
-	error_code = timer.connect("timeout", self, "_on_timer_timeout")
+	error_code = timer.connect("timeout", Callable(self, "_on_timer_timeout"))
 	if (error_code != 0):
 		print_debug("ERROR:", error_code)
 	timer.time_label = $Camera2D/GUI/GUI/Time/TimeLabel
@@ -81,7 +81,7 @@ func player_died(code):
 	game_data.death_count += 1
 	
 	# Save game_data
-	var error_code = ResourceSaver.save(save_filename, game_data)
+	var error_code = ResourceSaver.save(game_data, save_filename)
 	if (error_code != 0):
 		print_debug("ERROR:", error_code)
 
@@ -156,7 +156,7 @@ func reset():
 		if (error_code != 0):
 			print_debug("ERROR:", error_code)
 	else:
-		var error_code = get_tree().change_scene("res://scenes/Setup Game.tscn")
+		var error_code = get_tree().change_scene_to_file("res://scenes/Setup Game.tscn")
 		if (error_code != 0):
 			print_debug("ERROR:", error_code)
 
@@ -174,19 +174,19 @@ func _unhandled_input(event):
 	# Mouse in viewport coordinates.
 	if event is InputEventMouseButton:
 		if event.is_pressed():
-			var click_pos = $TileMap.world_to_map(get_global_mouse_position())
-#			print("Tilemap Cell: ", click_pos)
-			if ($TileMap.get_cellv(click_pos) == -1):
+			var click_pos = $TileMap.local_to_map(get_global_mouse_position())
+			if ($TileMap.get_cell_source_id(0, click_pos) == -1):
 				# Make sure the player is not in that cell
-				var player_pos = $TileMap.world_to_map($TileMap.to_local($Character.position))
+				var player_pos = $TileMap.local_to_map($TileMap.to_local($Character.position))
 				if player_pos != click_pos:
-					$TileMap.set_cellv(click_pos, 0)
+					$TileMap.set_cell(0, click_pos, 0, Vector2i(0, 0))
+					$TileMap/Layer0.update_internals()
 					blocks -= 1
 					$"Camera2D/GUI//GUI/Blocks/Block Label".text = block_format_str % blocks
 				else:
-					if ($TileMap.get_cellv(click_pos + Vector2.DOWN) == -1):
+					if ($TileMap.get_cell_source_id(0, click_pos + Vector2i.DOWN) == -1):
 						# No blocks below player, place block there.
-						$TileMap.set_cellv(click_pos + Vector2.DOWN, 0)
+						$TileMap.set_cellv(0, click_pos + Vector2.DOWN, 0)
 						blocks -= 1
 						$"Camera2D/GUI//GUI/Blocks/Block Label".text = block_format_str % blocks
 						pass
@@ -202,5 +202,5 @@ func wait(seconds: float) -> void:
 	timer.wait_time = seconds
 	timer.one_shot = true
 	timer.start()
-	yield(timer, "timeout")
+	await timer.timeout
 	timer.queue_free()  # Clean up the timer after use

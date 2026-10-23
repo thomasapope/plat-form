@@ -2,7 +2,7 @@ extends Area2D
 
 
 func _ready():
-	var error_code = connect("body_entered", self, "on_body_entered")
+	var error_code = connect("body_entered", Callable(self, "on_body_entered"))
 	if (error_code != 0):
 		print_debug("ERROR:", error_code)
 

@@ -3,13 +3,13 @@ extends Actor
 
 #var input_direction = Vector2.ZERO
 
-onready var platform_detector = $PlatformDetector
-onready var animation_player = $AnimationPlayer
-onready var sprite = $Sprite
-onready var sound_jump = $Jump
-onready var sound_die = $Die
-onready var sound_fall = $Fall
-onready var sound_reset = $Reset
+@onready var platform_detector = $PlatformDetector
+@onready var animation_player = $AnimationPlayer
+@onready var sprite = $Sprite2D
+@onready var sound_jump = $Jump
+@onready var sound_die = $Die
+@onready var sound_fall = $Fall
+@onready var sound_reset = $Reset
 
 var has_control = true
 var dead = false
@@ -26,7 +26,7 @@ signal player_died
 func _ready():
 	add_to_group("player")
 #	get_parent()
-	var error_code = connect("player_died", get_parent(), "player_died")
+	var error_code = connect("player_died", Callable(get_parent(), "player_died"))
 	if (error_code != 0):
 		print_debug("ERROR:", error_code)
 
@@ -42,6 +42,7 @@ func get_direction():
 
 func _physics_process(_delta):
 #	print("yeah")
+	super(_delta)
 	if (is_on_floor()):
 		frames_since_on_ground = 0
 	else:
@@ -69,7 +70,10 @@ func _physics_process(_delta):
 	
 #	print(_velocity)
 #	_velocity = move_and_slide_with_snap(_velocity, snap_vector, FLOOR_NORMAL, !is_on_platform, 4, 0.9, false)
-	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
+	set_velocity(_velocity)
+	set_up_direction(FLOOR_NORMAL)
+	move_and_slide()
+	_velocity = velocity
 	
 	# switch sprite direction
 	if direction.x != 0:
@@ -88,18 +92,18 @@ func _physics_process(_delta):
 func calculate_move_velocity(
 		linear_velocity,
 		direction,
-		speed,
+		new_speed,
 		is_jump_interrupted
 	):
-	var velocity = linear_velocity
-	velocity.x = speed.x * direction.x
+	var lvelocity = linear_velocity
+	lvelocity.x = new_speed.x * direction.x
 	if direction.y != 0.0:
-		velocity.y = speed.y * direction.y
+		lvelocity.y = new_speed.y * direction.y
 	if is_jump_interrupted:
 		# Decrease the Y velocity by multiplying it, but don't set it to 0
 		# as to not be too abrupt.
-		velocity.y *= 0.6
-	return velocity
+		lvelocity.y *= 0.6
+	return lvelocity
 
 
 func get_new_animation():
@@ -136,6 +140,9 @@ func kill(code = 0):
 	emit_signal("player_died", code)
 	has_control = false
 	dead = true
+	
+
+	print("Guest user was successfully signed in to LootLocker")
 	
 	match code:
 		0:
