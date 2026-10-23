@@ -47,7 +47,7 @@ custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 text = "PLAY"
 script = ExtResource("4")
-scene = "res://scenes/levels/Setup Game.tscn"
+scene = "res://scenes/levels/Level1.tscn"
 
 [node name="Leaderboard" type="Button" parent="VBoxContainer" unique_id=416983434]
 custom_minimum_size = Vector2(0, 75)

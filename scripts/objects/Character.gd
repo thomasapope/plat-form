@@ -141,9 +141,6 @@ func kill(code = 0):
 	has_control = false
 	dead = true
 	
-
-	print("Guest user was successfully signed in to LootLocker")
-	
 	match code:
 		0:
 			# Die

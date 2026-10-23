@@ -14,10 +14,10 @@ func get_system_username() -> String:
 	for var_name in possible_vars:
 		new_username = OS.get_environment(var_name)
 		if new_username != "":
+			# Convert username to standard "First L." format
 			var split_name = new_username.split("_", false, 3)
 			split_name[1] = split_name[1].substr(0, 1)
 			var temp = capitalize_first_char(split_name[0]) + " " + capitalize_first_char(split_name[1]) + "."
-			print(split_name)
 			new_username = temp
 			break
 		
