@@ -5,10 +5,6 @@ var username : String
 const levelOneKey : String = "vl_one"
 const levelTwoKey : String = "vl_two"
 
-func _ready():
-	username = get_system_username()
-
-
 # Get the current system username in Godot
 func get_system_username() -> String:
 	var new_username := ""
@@ -18,7 +14,13 @@ func get_system_username() -> String:
 	for var_name in possible_vars:
 		new_username = OS.get_environment(var_name)
 		if new_username != "":
+			var split_name = new_username.split("_", false, 3)
+			split_name[1] = split_name[1].substr(0, 1)
+			var temp = capitalize_first_char(split_name[0]) + " " + capitalize_first_char(split_name[1]) + "."
+			print(split_name)
+			new_username = temp
 			break
+		
 
 	# Fallback if nothing found
 	if new_username == "":
@@ -26,8 +28,19 @@ func get_system_username() -> String:
 
 	print("Current username: ", new_username)
 	return new_username
-	
-	
+
+
+# Capitalize the first character of a string in Godot
+func capitalize_first_char(text: String) -> String:
+	if text.is_empty():
+		return ""  # Handle empty string safely
+
+	# Take first character, convert to uppercase, then append the rest
+	var first_char := text.substr(0, 1).to_upper()
+	var rest := text.substr(1)
+	return first_char + rest
+
+
 # Submit Score
 func submit_score(uname : String, score: int):
 	var response = await LL_Leaderboards.SubmitScore.new(levelOneKey, score, uname, uname).send()

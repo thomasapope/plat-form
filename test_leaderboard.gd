@@ -41,7 +41,7 @@ func get_system_username() -> String:
 	if username == "":
 		username = "Player"
 
-	print("Current username:", username)
+	#print("Current username:", username)
 	return username
 	
 	
