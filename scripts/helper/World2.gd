@@ -75,7 +75,7 @@ func player_died(code):
 	
 	# Hide GUI
 	$Tutorials.visible = false
-	$Camera2D/GUI.visible = false
+	$Camera2D/GUI/GUI.visible = false
 	
 	# Update deaths
 	game_data.death_count += 1
