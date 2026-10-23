@@ -2,7 +2,7 @@ extends Node2D
 
 var reset_time = 2
 var end_reset_time = 70
-var blocks = 6
+@export var blocks = 6
 
 var is_goal_reached = false
 
@@ -175,16 +175,16 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.is_pressed():
 			var click_pos = $TileMap.local_to_map(get_global_mouse_position())
-			if ($TileMap.get_cell_source_id(click_pos) == -1):
+			if ($TileMap.get_cell_source_id(0, click_pos) == -1):
 				# Make sure the player is not in that cell
 				var player_pos = $TileMap.local_to_map($TileMap.to_local($Character.position))
 				if player_pos != click_pos:
-					$TileMap.set_cell(click_pos, 0, Vector2i(0, 0))
-					$TileMap/Layer0.update_internals()
+					$TileMap.set_cell(0, click_pos, 4, Vector2i(11, 3))
+					$TileMap.update_internals()
 					blocks -= 1
 					$"Camera2D/GUI//GUI/Blocks/Block Label".text = block_format_str % blocks
 				else:
-					if ($TileMap.get_cell_source_id(click_pos + Vector2i.DOWN) == -1):
+					if ($TileMap.get_cell_source_id(0, click_pos + Vector2i.DOWN) == -1):
 						# No blocks below player, place block there.
 						$TileMap.set_cellv(0, click_pos + Vector2.DOWN, 0)
 						blocks -= 1

@@ -26,13 +26,12 @@ func _ready():
 				var node = node_PlaceholderReplacer.instantiate()
 				node.set_position(Vector2( pos.x * sizex + (0.5*sizex), pos.y * sizey + (0.5*sizey)))
 				add_child(node)
-				#tm.set_cell(0, pos, -1) #this line remove the tile in TileMap
+				tm.set_cell(pos, -1) #this line remove the tile in TileMap
 			0: #Basic block
+				pass
 				#Check if it should be changed to a half block
-				#if tm.get_cell(pos.x, pos.y - 1) == 0 && tm.get_cell(pos.x, pos.y + 1) == -1: # Check above and below
-					#if tm.get_cell(pos.x - 1, pos.y) == 0 || tm.get_cell(pos.x + 1, pos.y) == 0: # Check left and right
-				if tm.get_cell_source_id(pos - Vector2i(0, 1)) == 0 && tm.get_cell_source_id(pos + Vector2i(0, 1)) == -1: # Check above and below
-					if tm.get_cell_source_id(pos - Vector2i(1, 0)) == 0 || tm.get_cell_source_id(pos + Vector2i(1, 0)) == 0: # Check left and right
-						continue
-					else:
-						tm.set_cell(pos, 2)
+				#if tm.get_cell_source_id(pos - Vector2i(0, 1)) == 0 && tm.get_cell_source_id(pos + Vector2i(0, 1)) == -1: # Check above and below
+					#if tm.get_cell_source_id(pos - Vector2i(1, 0)) == 0 || tm.get_cell_source_id(pos + Vector2i(1, 0)) == 0: # Check left and right
+						#continue
+					#else:
+						#tm.set_cell(pos, 2)
