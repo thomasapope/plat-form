@@ -2,8 +2,13 @@ extends Node
 
 var username : String
 
-const levelOneKey : String = "vl_one"
-const levelTwoKey : String = "vl_two"
+const LEVEL_KEY : PackedStringArray = [
+	"vl_test",
+	"vl_one",
+	"vl_one"
+]
+#const levelOneKey : String = "vl_one"
+#const levelTwoKey : String = "vl_two"
 
 # Get the current system username in Godot
 func get_system_username() -> String:
@@ -42,8 +47,8 @@ func capitalize_first_char(text: String) -> String:
 
 
 # Submit Score
-func submit_score(uname : String, score: int):
-	var response = await LL_Leaderboards.SubmitScore.new(levelOneKey, score, uname, uname).send()
+func submit_score(key : String, uname : String, score: int):
+	var response = await LL_Leaderboards.SubmitScore.new(key, score, uname, uname).send()
 	if(!response.success) :
 		# Request failed, handle errors
 		print("Request failed")

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c4f3617xoy5rq"]
 
-[ext_resource type="TileSet" path="res://art/mono_tileset.tres" id="1"]
+[ext_resource type="TileSet" uid="uid://b3o4wche7ukwj" path="res://art/mono_tileset.tres" id="1"]
 [ext_resource type="Script" uid="uid://cwhdsauyfc7s6" path="res://scenes/menu/Authenticate.gd" id="1_s52bc"]
 [ext_resource type="Texture2D" uid="uid://vc35bhsmvp1r" path="res://art/character/tile_0281.png" id="2"]
 [ext_resource type="FontFile" path="res://resources/ui/Swansea72.tres" id="3"]
@@ -47,7 +47,7 @@ custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 text = "PLAY"
 script = ExtResource("4")
-scene = "res://scenes/levels/Level1.tscn"
+scene = "res://scenes/menu/Play.tscn"
 
 [node name="Leaderboard" type="Button" parent="VBoxContainer" unique_id=416983434]
 custom_minimum_size = Vector2(0, 75)

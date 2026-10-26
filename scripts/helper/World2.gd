@@ -3,6 +3,7 @@ extends Node2D
 var reset_time = 2
 var end_reset_time = 70
 @export var blocks = 6
+@export var leaderboard_key = 0
 
 var is_goal_reached = false
 
@@ -122,7 +123,11 @@ func goal_reached():
 	#get_node("Camera2D/GUI/VictoryLabel/Deaths/Best").text = end_best_format % game_data.best_death_count
 	#get_node("Camera2D/GUI/VictoryLabel/Deaths/Best/CreatorBest").text = end_creator_format % game_data.creator_death_count
 	
-	PlayerTracker.submit_score(PlayerTracker.username, elapsed_time)
+	#PlayerTracker.submit_score(PlayerTracker.username, elapsed_time)
+	PlayerTracker.submit_score(
+		PlayerTracker.LEVEL_KEY[leaderboard_key], 
+		PlayerTracker.username, 
+		elapsed_time)
 	
 	$ResetTimer.wait_time = end_reset_time
 	$ResetTimer.start()
@@ -189,7 +194,7 @@ func _unhandled_input(event):
 				else:
 					if ($TileMap.get_cell_source_id(click_pos + Vector2i.DOWN) == -1):
 						# No blocks below player, place block there.
-						$TileMap.set_cellv(0, click_pos + Vector2.DOWN, 0)
+						$TileMap.set_cellv(0, click_pos + Vector2i.DOWN, 0)
 						blocks -= 1
 						$"Camera2D/GUI//GUI/Blocks/Block Label".text = block_format_str % blocks
 						pass

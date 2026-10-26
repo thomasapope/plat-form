@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bsltsyyxu12yo"]
+
+[ext_resource type="Theme" uid="uid://04ren3aqearp" path="res://resources/ui/UITheme.tres" id="1_l35oc"]
+[ext_resource type="Script" uid="uid://34ljq4401r3k" path="res://scripts/menu/MenuButton.gd" id="4_s7tn4"]
+
+[node name="Leaderboard" type="Control" unique_id=898120892]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_l35oc")
+
+[node name="HFlowContainer" type="HFlowContainer" parent="." unique_id=1760466892]
+custom_minimum_size = Vector2(450, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 351.0
+offset_top = 100.0
+offset_right = 801.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HFlowContainer" unique_id=1146971761]
+layout_mode = 2
+theme = ExtResource("1_l35oc")
+
+[node name="LevelButton" type="Button" parent="HFlowContainer/MarginContainer" unique_id=872096648]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Level 1"
+script = ExtResource("4_s7tn4")
+scene = "res://scenes/levels/Level1.tscn"
+
+[node name="MarginContainer2" type="MarginContainer" parent="HFlowContainer" unique_id=1481252352]
+layout_mode = 2
+
+[node name="LevelButton2" type="Button" parent="HFlowContainer/MarginContainer2" unique_id=1031483348]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Cauldron"
+script = ExtResource("4_s7tn4")
+scene = "res://scenes/levels/Level2.tscn"
+
+[node name="Back" type="Button" parent="." unique_id=1210026352]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 0
+offset_left = 43.0
+offset_top = 493.0
+offset_right = 193.0
+offset_bottom = 543.0
+text = "Back"
+script = ExtResource("4_s7tn4")
+scene = "res://scenes/menu/Main.tscn"
