@@ -41,10 +41,6 @@ func _ready():
 	timer.start()
 		
 	game_data = load_save_data(save_filename)
-	game_data.death_count = 0
-#	print (game_data.death_count)
-#	print (game_data.creator_death_count)
-#	print (game_data.best_death_count)
 	
 	$Camera2D/GUI/GUI/Deaths/DeathCountLabel.text = death_count_format_str % game_data.death_count
 	
@@ -202,6 +198,11 @@ func _unhandled_input(event):
 			else:
 				# Already a block there
 				print("There is already a tile there.")
+	elif event is InputEventKey:
+		if event.is_action_pressed("escape"):
+			var error_code = get_tree().change_scene_to_file("res://scenes/menu/Main.tscn")
+			if (error_code != 0):
+				print_debug("ERROR:", error_code)
 
 
 func wait(seconds: float) -> void:

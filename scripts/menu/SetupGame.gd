@@ -5,6 +5,7 @@ var game_data
 @export var save_filename = "user://save1.tres"
 
 func _ready():
+	
 	game_data = load_save_data(save_filename)
 	
 	game_data.death_count = 0
@@ -17,7 +18,8 @@ func _ready():
 	if (error_code != 0):
 		print_debug("ERROR:", error_code)
 	
-	error_code = get_tree().change_scene_to_file("res://scenes/menu/Main.tscn")
+	#error_code = get_tree().change_scene_to_file("res://scenes/menu/Main.tscn")
+	error_code = get_tree().call_deferred("change_scene_to_file", "res://scenes/menu/Main.tscn")
 	if (error_code != 0):
 		print_debug("ERROR:", error_code)
 

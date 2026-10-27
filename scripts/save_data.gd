@@ -9,4 +9,3 @@ class_name save_data
 
 @export var best_time = -1
 @export var total_time = 0
-

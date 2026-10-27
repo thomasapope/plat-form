@@ -201,6 +201,11 @@ func _unhandled_input(event):
 			else:
 				# Already a block there
 				print("There is already a tile there.")
+	elif event is InputEventKey:
+		if event.is_action_pressed("escape"):
+			var error_code = get_tree().change_scene_to_file("res://scenes/menu/Main.tscn")
+			if (error_code != 0):
+				print_debug("ERROR:", error_code)
 
 
 func wait(seconds: float) -> void:

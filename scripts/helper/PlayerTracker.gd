@@ -7,6 +7,8 @@ const LEVEL_KEY : PackedStringArray = [
 	"vl_one",
 	"vl_two"
 ]
+
+var has_authenticated = false
 #const levelOneKey : String = "vl_one"
 #const levelTwoKey : String = "vl_two"
 
