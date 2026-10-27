@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://xawquaq1vlos"]
+
+[ext_resource type="Script" uid="uid://bkqvjk6f3o0br" path="res://test_leaderboard.gd" id="1_ofe3q"]
+
+[node name="TestLeaderboard" type="Node2D" unique_id=1445291547]
+script = ExtResource("1_ofe3q")

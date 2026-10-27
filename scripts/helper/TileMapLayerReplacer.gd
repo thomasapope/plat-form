@@ -1,0 +1,37 @@
+extends TileMapLayer
+
+@export var placeholder_tile_id = 1
+#export(PackedScene)var node_PlaceholderReplacer
+var node_PlaceholderReplacer = preload("res://scenes/objects/Hazard.tscn")
+
+
+func _ready():
+#	var Placeholder = preload(node_PlaceholderReplacer)
+	
+	var tm = get_parent().get_node("TileMap")
+	#var sizex = tm.get_cell_size().x
+	#var sizey = tm.get_cell_size().y
+	var sizex = tm.tile_set.tile_size.x
+	var sizey = tm.tile_set.tile_size.y
+#	var ts = tm.get_tileset()
+	var uc = tm.get_used_cells()
+	for pos in uc :
+		#var id = tm.get_cell(pos.x, pos.y)
+		var id = tm.get_cell_source_id(pos)
+#		var name = ts.tile_get_name(id)
+#		if name == "1":
+		match id:
+			placeholder_tile_id:
+#		if id == placeholder_tile_id:
+				var node = node_PlaceholderReplacer.instantiate()
+				node.set_position(Vector2( pos.x * sizex + (0.5*sizex), pos.y * sizey + (0.5*sizey)))
+				add_child(node)
+				tm.set_cell(pos, -1) #this line remove the tile in TileMap
+			0: #Basic block
+				pass
+				#Check if it should be changed to a half block
+				#if tm.get_cell_source_id(pos - Vector2i(0, 1)) == 0 && tm.get_cell_source_id(pos + Vector2i(0, 1)) == -1: # Check above and below
+					#if tm.get_cell_source_id(pos - Vector2i(1, 0)) == 0 || tm.get_cell_source_id(pos + Vector2i(1, 0)) == 0: # Check left and right
+						#continue
+					#else:
+						#tm.set_cell(pos, 2)

@@ -1,58 +1,92 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene format=3 uid="uid://dry11hmayq1dv"]
 
-[ext_resource path="res://resources/ui/Swansea72.tres" type="DynamicFont" id=1]
-[ext_resource path="res://resources/ui/UITheme.tres" type="Theme" id=2]
-[ext_resource path="res://scripts/menu/MenuButton.gd" type="Script" id=3]
-[ext_resource path="res://scripts/menu/Scores.gd" type="Script" id=4]
+[ext_resource type="FontFile" path="res://resources/ui/Swansea72.tres" id="1"]
+[ext_resource type="Theme" uid="uid://04ren3aqearp" path="res://resources/ui/UITheme.tres" id="2"]
+[ext_resource type="Script" uid="uid://34ljq4401r3k" path="res://scripts/menu/MenuButton.gd" id="3"]
+[ext_resource type="Script" uid="uid://jynd0d7rmn0i" path="res://scripts/menu/Scores.gd" id="4"]
 
-[node name="Leaderboard" type="Control"]
-theme = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Leaderboard" type="Control" unique_id=898120892]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("2")
 
-[node name="Label" type="Label" parent="."]
-margin_left = 215.0
-margin_top = 55.0
-margin_right = 775.0
-margin_bottom = 148.0
-theme = ExtResource( 2 )
-custom_fonts/font = ExtResource( 1 )
+[node name="Label" type="Label" parent="." unique_id=1117550842]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 55.0
+offset_right = 856.0
+offset_bottom = 148.0
+theme = ExtResource("2")
+theme_override_fonts/font = ExtResource("1")
+theme_override_font_sizes/font_size = 48
 text = "Victor's Club"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-margin_left = 339.0
-margin_top = 149.0
-margin_right = 639.0
-margin_bottom = 487.0
-scroll_horizontal_enabled = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Scores" type="VBoxContainer" parent="ScrollContainer"]
-grow_horizontal = 2
-theme = ExtResource( 2 )
-custom_constants/separation = 10
+[node name="ScoreContainer" type="HBoxContainer" parent="." unique_id=1407635271]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 125.0
+offset_right = 901.0
+offset_bottom = 578.0
 alignment = 1
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Back" type="Button" parent="."]
-margin_left = 43.0
-margin_top = 493.0
-margin_right = 193.0
-margin_bottom = 543.0
-rect_min_size = Vector2( 0, 50 )
+[node name="Level1Container" type="ScrollContainer" parent="ScoreContainer" unique_id=980761721]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+script = ExtResource("4")
+leaderboard_key = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScoreContainer/Level1Container" unique_id=1404940781]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScoreContainer/Level1Container/VBoxContainer" unique_id=1870601607]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("2")
+theme_override_font_sizes/font_size = 24
+text = "Level 1"
+horizontal_alignment = 1
+
+[node name="Scores" type="VBoxContainer" parent="ScoreContainer/Level1Container/VBoxContainer" unique_id=734688337]
+layout_mode = 2
+theme = ExtResource("2")
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Level2Container2" type="ScrollContainer" parent="ScoreContainer" unique_id=747803762]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+script = ExtResource("4")
+leaderboard_key = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScoreContainer/Level2Container2" unique_id=1777489153]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScoreContainer/Level2Container2/VBoxContainer" unique_id=2033082256]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("2")
+theme_override_font_sizes/font_size = 24
+text = "Cauldron"
+horizontal_alignment = 1
+
+[node name="Scores" type="VBoxContainer" parent="ScoreContainer/Level2Container2/VBoxContainer" unique_id=86325563]
+layout_mode = 2
+theme = ExtResource("2")
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Back" type="Button" parent="." unique_id=1210026352]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 0
+offset_left = 43.0
+offset_top = 493.0
+offset_right = 193.0
+offset_bottom = 543.0
 text = "Back"
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("3")
 scene = "res://scenes/menu/Main.tscn"

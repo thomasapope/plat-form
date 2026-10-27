@@ -2,9 +2,10 @@ extends Node2D
 
 var game_data
 #export var save_filename = "user://save.tres"
-export var save_filename = "user://save1.tres"
+@export var save_filename = "user://save1.tres"
 
 func _ready():
+	
 	game_data = load_save_data(save_filename)
 	
 	game_data.death_count = 0
@@ -12,11 +13,13 @@ func _ready():
 	print(game_data.death_count)
 	
 #	save_data(filename, game_data)
-	var error_code = ResourceSaver.save(save_filename, game_data)
+	#var error_code = ResourceSaver.save(save_filename, game_data) 
+	var error_code = ResourceSaver.save(game_data, save_filename) 
 	if (error_code != 0):
 		print_debug("ERROR:", error_code)
 	
-	error_code = get_tree().change_scene("res://scenes/levels/World.tscn")
+	#error_code = get_tree().change_scene_to_file("res://scenes/menu/Main.tscn")
+	error_code = get_tree().call_deferred("change_scene_to_file", "res://scenes/menu/Main.tscn")
 	if (error_code != 0):
 		print_debug("ERROR:", error_code)
 

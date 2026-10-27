@@ -1,97 +1,77 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene format=3 uid="uid://c4f3617xoy5rq"]
 
-[ext_resource path="res://art/mono_tileset.tres" type="TileSet" id=1]
-[ext_resource path="res://art/character/tile_0281.png" type="Texture" id=2]
-[ext_resource path="res://resources/ui/Swansea72.tres" type="DynamicFont" id=3]
-[ext_resource path="res://scripts/menu/MenuButton.gd" type="Script" id=4]
-[ext_resource path="res://resources/ui/UITheme.tres" type="Theme" id=5]
+[ext_resource type="TileSet" uid="uid://b3o4wche7ukwj" path="res://art/mono_tileset.tres" id="1"]
+[ext_resource type="Script" uid="uid://cwhdsauyfc7s6" path="res://scenes/menu/Authenticate.gd" id="1_s52bc"]
+[ext_resource type="Texture2D" uid="uid://vc35bhsmvp1r" path="res://art/character/tile_0281.png" id="2"]
+[ext_resource type="FontFile" path="res://resources/ui/Swansea72.tres" id="3"]
+[ext_resource type="Script" uid="uid://34ljq4401r3k" path="res://scripts/menu/MenuButton.gd" id="4"]
+[ext_resource type="Theme" uid="uid://04ren3aqearp" path="res://resources/ui/UITheme.tres" id="5"]
 
-[node name="Main" type="Control"]
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Main" type="Control" unique_id=660443420]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_s52bc")
 
-[node name="Label" type="Label" parent="."]
-margin_left = 215.0
-margin_top = 65.0
-margin_right = 775.0
-margin_bottom = 224.0
-theme = ExtResource( 5 )
-custom_fonts/font = ExtResource( 3 )
+[node name="Label" type="Label" parent="." unique_id=365129334]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 65.0
+offset_right = 856.0
+offset_bottom = 224.0
+theme = ExtResource("5")
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 76
 text = "Plat Form"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
 
-[node name="Version" type="Label" parent="Label"]
-margin_left = 457.0
-margin_top = 23.0
-margin_right = 569.0
-margin_bottom = 63.0
-theme = ExtResource( 5 )
-text = "v 1.0.2.1"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Version" type="Label" parent="Label" unique_id=85201576]
+layout_mode = 0
+offset_left = 838.0
+offset_top = 556.0
+offset_right = 950.0
+offset_bottom = 596.0
+theme = ExtResource("5")
+text = "v 1.0.2.2"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 351.0
-margin_top = 160.0
-margin_right = 651.0
-margin_bottom = 499.0
-theme = ExtResource( 5 )
-custom_constants/separation = 25
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1481836922]
+layout_mode = 0
+offset_left = 426.0
+offset_top = 160.0
+offset_right = 726.0
+offset_bottom = 499.0
+theme = ExtResource("5")
+theme_override_constants/separation = 25
 
-[node name="Play" type="Button" parent="VBoxContainer"]
-margin_right = 300.0
-margin_bottom = 75.0
-rect_min_size = Vector2( 0, 75 )
+[node name="Play" type="Button" parent="VBoxContainer" unique_id=270502340]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
 text = "PLAY"
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-scene = "res://scenes/levels/Setup Game.tscn"
+script = ExtResource("4")
+scene = "res://scenes/menu/Play.tscn"
 
-[node name="Leaderboard" type="Button" parent="VBoxContainer"]
-margin_top = 100.0
-margin_right = 300.0
-margin_bottom = 175.0
-rect_min_size = Vector2( 0, 75 )
+[node name="Leaderboard" type="Button" parent="VBoxContainer" unique_id=416983434]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
 text = "VICTORS"
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("4")
 scene = "res://scenes/menu/Leaderboard.tscn"
 
-[node name="Exit" type="Button" parent="VBoxContainer"]
+[node name="Exit" type="Button" parent="VBoxContainer" unique_id=1267931064]
 visible = false
-margin_top = 200.0
-margin_right = 300.0
-margin_bottom = 275.0
-rect_min_size = Vector2( 0, 75 )
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
 text = "EXIT"
 expand_icon = true
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("4")
 action = "exit"
 
-[node name="TileMap" type="TileMap" parent="."]
-position = Vector2( 0, 32 )
-scale = Vector2( 3, 3 )
-tile_set = ExtResource( 1 )
-cell_size = Vector2( 16, 16 )
-cell_custom_transform = Transform2D( 64, 32, 0, 64, 0, 0 )
-format = 1
-tile_data = PoolIntArray( 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 262145, 0, 0, 262147, 0, 0, 327681, 0, 0, 327683, 0, 0, 393217, 0, 0, 393219, 0, 0, 458752, 1, 0, 458753, 0, 0, 458755, 0, 0, 524288, 0, 0, 524289, 0, 0, 524291, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 589825, 0, 0, 589827, 0, 0, 589839, 0, 0, 589841, 0, 0, 655361, 0, 0, 655363, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655375, 0, 0, 655377, 0, 0, 720897, 0, 0, 720899, 0, 0, 720901, 0, 0, 720903, 0, 0, 720911, 0, 0, 720913, 0, 0 )
+[node name="TileMap" type="TileMap" parent="." unique_id=186585909]
+position = Vector2(55, 87)
+scale = Vector2(3, 3)
+tile_set = ExtResource("1")
+format = 2
+layer_0/tile_data = PackedInt32Array(196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 262145, 0, 0, 262147, 0, 0, 327681, 0, 0, 327683, 0, 0, 393217, 0, 0, 393219, 0, 0, 458752, 1, 0, 458753, 0, 0, 458755, 0, 0, 524288, 0, 0, 524289, 0, 0, 524291, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 589825, 0, 0, 589827, 0, 0, 589839, 0, 0, 589841, 0, 0, 655361, 0, 0, 655363, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655375, 0, 0, 655377, 0, 0, 720897, 0, 0, 720899, 0, 0, 720901, 0, 0, 720903, 0, 0, 720911, 0, 0, 720913, 0, 0, 589823, 0, 0, 524287, 1, 0, 524286, 1, 0, 589822, 0, 0, 786447, 0, 0, 786449, 0, 0, 786439, 0, 0, 786437, 0, 0, 786435, 0, 0, 786433, 0, 0, 262166, 0, 0, 262165, 0, 0, 262164, 0, 0, 327700, 0, 0, 393236, 0, 0, 458772, 0, 0, 458773, 0, 0, 458774, 0, 0, 196629, 1, 0, 196630, 1, 0)
 
-[node name="Sprite" type="Sprite" parent="TileMap"]
-position = Vector2( 264, 120 )
-texture = ExtResource( 2 )
+[node name="Sprite2D" type="Sprite2D" parent="TileMap" unique_id=1058918956]
+position = Vector2(264, 120)
+texture = ExtResource("2")

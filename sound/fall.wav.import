@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/fall.wav-a9e75060417015aeedf2ad27dfe98f1d.sample"
+type="AudioStreamWAV"
+uid="uid://cnd3dogut5spe"
+path="res://.godot/imported/fall.wav-a9e75060417015aeedf2ad27dfe98f1d.sample"
 
 [deps]
 
 source_file="res://sound/fall.wav"
-dest_files=[ "res://.import/fall.wav-a9e75060417015aeedf2ad27dfe98f1d.sample" ]
+dest_files=["res://.godot/imported/fall.wav-a9e75060417015aeedf2ad27dfe98f1d.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

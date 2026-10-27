@@ -1,8 +1,12 @@
-[gd_resource type="Theme" load_steps=2 format=2]
+[gd_resource type="Theme" format=3 uid="uid://04ren3aqearp"]
 
-[ext_resource path="res://resources/ui/Swansea24.tres" type="DynamicFont" id=2]
+[ext_resource type="FontFile" uid="uid://c4s4f3e3aq4t3" path="res://resources/ui/Swansea24.tres" id="2"]
 
 [resource]
-default_font = ExtResource( 2 )
-Button/fonts/font = ExtResource( 2 )
-Label/fonts/font = ExtResource( 2 )
+default_font = ExtResource("2")
+Button/fonts/font = ExtResource("2")
+Label/fonts/font = ExtResource("2")
+MarginContainer/constants/margin_bottom = 0
+MarginContainer/constants/margin_left = 10
+MarginContainer/constants/margin_right = 10
+MarginContainer/constants/margin_top = 0

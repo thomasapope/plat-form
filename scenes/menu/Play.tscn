@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bsltsyyxu12yo"]
+
+[ext_resource type="Theme" uid="uid://04ren3aqearp" path="res://resources/ui/UITheme.tres" id="1_l35oc"]
+[ext_resource type="Texture2D" uid="uid://bf047hd4cdo7f" path="res://art/ui/Level1.png" id="2_l35oc"]
+[ext_resource type="Texture2D" uid="uid://o5447ouuuoun" path="res://art/ui/Level2.png" id="4_4s5m6"]
+[ext_resource type="Script" uid="uid://34ljq4401r3k" path="res://scripts/menu/MenuButton.gd" id="4_s7tn4"]
+
+[node name="Leaderboard" type="Control" unique_id=898120892]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_l35oc")
+
+[node name="HFlowContainer" type="HFlowContainer" parent="." unique_id=1760466892]
+custom_minimum_size = Vector2(450, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 351.0
+offset_top = 100.0
+offset_right = 801.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HFlowContainer" unique_id=1146971761]
+layout_mode = 2
+theme = ExtResource("1_l35oc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HFlowContainer/MarginContainer" unique_id=1593107374]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HFlowContainer/MarginContainer/VBoxContainer" unique_id=1801917944]
+custom_minimum_size = Vector2(200, 125)
+layout_mode = 2
+texture = ExtResource("2_l35oc")
+expand_mode = 1
+
+[node name="LevelButton" type="Button" parent="HFlowContainer/MarginContainer/VBoxContainer" unique_id=544448013]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Level 1"
+script = ExtResource("4_s7tn4")
+scene = "res://scenes/levels/Level1.tscn"
+
+[node name="MarginContainer2" type="MarginContainer" parent="HFlowContainer" unique_id=1481252352]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HFlowContainer/MarginContainer2" unique_id=1381212085]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HFlowContainer/MarginContainer2/VBoxContainer2" unique_id=832342849]
+custom_minimum_size = Vector2(200, 125)
+layout_mode = 2
+texture = ExtResource("4_4s5m6")
+expand_mode = 1
+
+[node name="LevelButton2" type="Button" parent="HFlowContainer/MarginContainer2/VBoxContainer2" unique_id=1938577865]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Cauldron"
+script = ExtResource("4_s7tn4")
+scene = "res://scenes/levels/Level2.tscn"
+
+[node name="Back" type="Button" parent="." unique_id=1210026352]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 0
+offset_left = 43.0
+offset_top = 493.0
+offset_right = 193.0
+offset_bottom = 543.0
+text = "Back"
+script = ExtResource("4_s7tn4")
+scene = "res://scenes/menu/Main.tscn"

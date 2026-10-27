@@ -2,12 +2,13 @@ extends Node2D
 
 var reset_time = 2
 var end_reset_time = 70
-var blocks = 6
+@export var blocks = 6
+@export var leaderboard_key = 0
 
 var is_goal_reached = false
 
-onready var sound_win = $Win
-onready var timer = $TimeTracker
+@onready var sound_win = $Win
+@onready var timer = $TimeTracker
 
 var block_format_str = ": %d"
 var format_string = ": %d"
@@ -21,19 +22,19 @@ var game_data
 var death_count = 0
 var elapsed_time = 0
 
-export var save_filename = "user://save1.tres"
+@export var save_filename = "user://save1.tres"
 
 
 func _ready():
 	$"Camera2D/GUI/GUI/Blocks/Block Label".text = block_format_str % blocks
 	
 	# Setup reset timer
-	var error_code = $ResetTimer.connect("timeout", self, "reset")
+	var error_code = $ResetTimer.connect("timeout", Callable(self, "reset"))
 	if (error_code != 0):
 		print_debug("ERROR:", error_code)
 	
 	# Setup time tracker
-	error_code = timer.connect("timeout", self, "_on_timer_timeout")
+	error_code = timer.connect("timeout", Callable(self, "_on_timer_timeout"))
 	if (error_code != 0):
 		print_debug("ERROR:", error_code)
 	timer.time_label = $Camera2D/GUI/GUI/Time/TimeLabel
@@ -75,13 +76,13 @@ func player_died(code):
 	
 	# Hide GUI
 	$Tutorials.visible = false
-	$Camera2D/GUI.visible = false
+	$Camera2D/GUI/GUI.visible = false
 	
 	# Update deaths
 	game_data.death_count += 1
 	
 	# Save game_data
-	var error_code = ResourceSaver.save(save_filename, game_data)
+	var error_code = ResourceSaver.save(game_data, save_filename)
 	if (error_code != 0):
 		print_debug("ERROR:", error_code)
 
@@ -118,27 +119,33 @@ func goal_reached():
 	get_node("Camera2D/GUI/VictoryLabel/Time").text = time_format % elapsed_time
 	# Deaths
 	get_node("Camera2D/GUI/VictoryLabel/Deaths").text = end_death_format % game_data.death_count
-	get_node("Camera2D/GUI/VictoryLabel/Deaths/Best").text = end_best_format % game_data.best_death_count
+	#get_node("Camera2D/GUI/VictoryLabel/Deaths/Best").text = end_best_format % game_data.best_death_count
 	#get_node("Camera2D/GUI/VictoryLabel/Deaths/Best/CreatorBest").text = end_creator_format % game_data.creator_death_count
+	
+	#PlayerTracker.submit_score(PlayerTracker.username, elapsed_time)
+	PlayerTracker.submit_score(
+		PlayerTracker.LEVEL_KEY[leaderboard_key], 
+		PlayerTracker.username, 
+		elapsed_time * 10000.0)
 	
 	$ResetTimer.wait_time = end_reset_time
 	$ResetTimer.start()
 	
 	# Check for fewest deaths
-	if (game_data.best_death_count > game_data.death_count || game_data.best_death_count == -1):
-		game_data.best_death_count = game_data.death_count
-		print("NEW HIGH SCORE! ", game_data.best_death_count)
-		get_node("Camera2D/GUI/VictoryLabel/Deaths/Best").text = end_best_format % game_data.best_death_count
-	
-	# Check for best time
-	if (check_best_time(elapsed_time)):
-		game_data.best_time = elapsed_time
-		print("NEW BEST TIME! ", game_data.best_time)
-#		$Camera2D/GUI/
-	
-	var error_code = ResourceSaver.save(save_filename, game_data)
-	if (error_code != 0):
-		print_debug("ERROR:", error_code)
+	#if (game_data.best_death_count > game_data.death_count || game_data.best_death_count == -1):
+		#game_data.best_death_count = game_data.death_count
+		#print("NEW HIGH SCORE! ", game_data.best_death_count)
+		#get_node("Camera2D/GUI/VictoryLabel/Deaths/Best").text = end_best_format % game_data.best_death_count
+	#
+	## Check for best time
+	#if (check_best_time(elapsed_time)):
+		#game_data.best_time = elapsed_time
+		#print("NEW BEST TIME! ", game_data.best_time)
+##		$Camera2D/GUI/
+	#
+	#var error_code = ResourceSaver.save(save_filename, game_data)
+	#if (error_code != 0):
+		#print_debug("ERROR:", error_code)
 
 
 func take_screenshot():
@@ -156,7 +163,7 @@ func reset():
 		if (error_code != 0):
 			print_debug("ERROR:", error_code)
 	else:
-		var error_code = get_tree().change_scene("res://scenes/Setup Game.tscn")
+		var error_code = get_tree().change_scene_to_file("res://scenes/menu/Main.tscn")
 		if (error_code != 0):
 			print_debug("ERROR:", error_code)
 
@@ -174,19 +181,19 @@ func _unhandled_input(event):
 	# Mouse in viewport coordinates.
 	if event is InputEventMouseButton:
 		if event.is_pressed():
-			var click_pos = $TileMap.world_to_map(get_global_mouse_position())
-#			print("Tilemap Cell: ", click_pos)
-			if ($TileMap.get_cellv(click_pos) == -1):
+			var click_pos = $TileMap.local_to_map(get_global_mouse_position())
+			if ($TileMap.get_cell_source_id(0, click_pos) == -1):
 				# Make sure the player is not in that cell
-				var player_pos = $TileMap.world_to_map($TileMap.to_local($Character.position))
+				var player_pos = $TileMap.local_to_map($TileMap.to_local($Character.position))
 				if player_pos != click_pos:
-					$TileMap.set_cellv(click_pos, 0)
+					$TileMap.set_cell(0, click_pos, 4, Vector2i(11, 3))
+					$TileMap.update_internals()
 					blocks -= 1
 					$"Camera2D/GUI//GUI/Blocks/Block Label".text = block_format_str % blocks
 				else:
-					if ($TileMap.get_cellv(click_pos + Vector2.DOWN) == -1):
+					if ($TileMap.get_cell_source_id(0, click_pos + Vector2i.DOWN) == -1):
 						# No blocks below player, place block there.
-						$TileMap.set_cellv(click_pos + Vector2.DOWN, 0)
+						$TileMap.set_cellv(0, click_pos + Vector2.DOWN, 0)
 						blocks -= 1
 						$"Camera2D/GUI//GUI/Blocks/Block Label".text = block_format_str % blocks
 						pass
@@ -194,6 +201,11 @@ func _unhandled_input(event):
 			else:
 				# Already a block there
 				print("There is already a tile there.")
+	elif event is InputEventKey:
+		if event.is_action_pressed("escape"):
+			var error_code = get_tree().change_scene_to_file("res://scenes/menu/Main.tscn")
+			if (error_code != 0):
+				print_debug("ERROR:", error_code)
 
 
 func wait(seconds: float) -> void:
@@ -202,5 +214,5 @@ func wait(seconds: float) -> void:
 	timer.wait_time = seconds
 	timer.one_shot = true
 	timer.start()
-	yield(timer, "timeout")
+	await timer.timeout
 	timer.queue_free()  # Clean up the timer after use
