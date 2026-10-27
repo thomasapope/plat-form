@@ -127,7 +127,7 @@ func goal_reached():
 	PlayerTracker.submit_score(
 		PlayerTracker.LEVEL_KEY[leaderboard_key], 
 		PlayerTracker.username, 
-		elapsed_time)
+		elapsed_time * 10000.0)
 	
 	$ResetTimer.wait_time = end_reset_time
 	$ResetTimer.start()
@@ -164,7 +164,7 @@ func reset():
 		if (error_code != 0):
 			print_debug("ERROR:", error_code)
 	else:
-		var error_code = get_tree().change_scene_to_file("res://scenes/Setup Game.tscn")
+		var error_code = get_tree().change_scene_to_file("res://scenes/menu/Main.tscn")
 		if (error_code != 0):
 			print_debug("ERROR:", error_code)
 

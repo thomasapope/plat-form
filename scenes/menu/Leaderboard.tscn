@@ -29,11 +29,12 @@ offset_top = 125.0
 offset_right = 901.0
 offset_bottom = 578.0
 alignment = 1
-script = ExtResource("4")
 
 [node name="Level1Container" type="ScrollContainer" parent="ScoreContainer" unique_id=980761721]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+script = ExtResource("4")
+leaderboard_key = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScoreContainer/Level1Container" unique_id=1404940781]
 layout_mode = 2
@@ -49,6 +50,31 @@ text = "Level 1"
 horizontal_alignment = 1
 
 [node name="Scores" type="VBoxContainer" parent="ScoreContainer/Level1Container/VBoxContainer" unique_id=734688337]
+layout_mode = 2
+theme = ExtResource("2")
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Level2Container2" type="ScrollContainer" parent="ScoreContainer" unique_id=747803762]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+script = ExtResource("4")
+leaderboard_key = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScoreContainer/Level2Container2" unique_id=1777489153]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScoreContainer/Level2Container2/VBoxContainer" unique_id=2033082256]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("2")
+theme_override_font_sizes/font_size = 24
+text = "Cauldron"
+horizontal_alignment = 1
+
+[node name="Scores" type="VBoxContainer" parent="ScoreContainer/Level2Container2/VBoxContainer" unique_id=86325563]
 layout_mode = 2
 theme = ExtResource("2")
 theme_override_constants/separation = 10

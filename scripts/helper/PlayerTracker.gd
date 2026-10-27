@@ -5,7 +5,7 @@ var username : String
 const LEVEL_KEY : PackedStringArray = [
 	"vl_test",
 	"vl_one",
-	"vl_one"
+	"vl_two"
 ]
 #const levelOneKey : String = "vl_one"
 #const levelTwoKey : String = "vl_two"
@@ -31,7 +31,7 @@ func get_system_username() -> String:
 	if new_username == "":
 		new_username = "Player"
 
-	print("Current username: ", new_username)
+	print("Username: ", new_username)
 	return new_username
 
 
@@ -48,7 +48,15 @@ func capitalize_first_char(text: String) -> String:
 
 # Submit Score
 func submit_score(key : String, uname : String, score: int):
+	# Convert score to int
 	var response = await LL_Leaderboards.SubmitScore.new(key, score, uname, uname).send()
+	
+	print(
+		key, " - ",
+		uname, " - ",
+		score
+	)
+	
 	if(!response.success) :
 		# Request failed, handle errors
 		print("Request failed")

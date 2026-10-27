@@ -20,7 +20,7 @@ blocks = 3
 leaderboard_key = 2
 
 [node name="Character" parent="." unique_id=464733308 instance=ExtResource("3_5v643")]
-position = Vector2(-29, -958)
+position = Vector2(2665, -1108)
 
 [node name="ResetTimer" type="Timer" parent="." unique_id=1978073339]
 
