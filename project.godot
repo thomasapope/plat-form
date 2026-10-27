@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Plat Form"
-run/main_scene="res://scenes/menu/Main.tscn"
+run/main_scene="res://scenes/levels/Setup Game.tscn"
 config/features=PackedStringArray("4.6")
 config/icon="res://art/character/tile_0284.png"
 config/windows_native_icon="res://icon.ico"
