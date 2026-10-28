@@ -26,12 +26,12 @@ horizontal_alignment = 1
 
 [node name="Version" type="Label" parent="Label" unique_id=85201576]
 layout_mode = 0
-offset_left = 838.0
-offset_top = 556.0
-offset_right = 950.0
-offset_bottom = 596.0
+offset_left = 783.0
+offset_top = 554.0
+offset_right = 895.0
+offset_bottom = 594.0
 theme = ExtResource("5")
-text = "v 1.0.2.2"
+text = "v 1.1.0"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1481836922]
 layout_mode = 0
